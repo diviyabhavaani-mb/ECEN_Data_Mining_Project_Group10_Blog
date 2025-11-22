@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMNIST Character Classification</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <h1>KMNIST Character Classification</h1>
+        <nav>
+            <a href="https://github.com/adimantamu/ECEN_Data_Mining_Project_Group10" target="_blank">GitHub Code</a>
+            <a href="https://www.overleaf.com/project/69016ec3e24401e7e034fea3" target="_blank">Report</a>
+            <button id="theme-toggle">Toggle Theme</button>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Abstract</h2>
+            <p>This project studies handwritten Japanese character recognition on the Kuzushiji-MNIST (KMNIST) dataset. The main goal is to understand how far a simple linear classifier can go on this task and how much performance is gained by moving to deeper convolutional neural networks (CNNs). Logistic regression reaches about 60% accuracy, while the tuned CNN reaches about 97% accuracy.</p>
+        </section>
+
+        <section>
+            <h2>Dataset Overview</h2>
+            <img src="assets/Class distribution in training set.png" alt="Class distribution">
+        </section>
+
+        <section>
+            <h2>Exploratory Data Analysis</h2>
+            <img src="assets/PCA visualization of KMNIST.png" alt="PCA visualization">
+        </section>
+
+        <section>
+            <h2>Results</h2>
+            <table>
+                <tr><th>Model</th><th>Acc.</th><th>Prec.</th><th>Rec.</th><th>F1</th></tr>
+                <tr><td>Logistic Regression</td><td>0.598</td><td>0.609</td><td>0.598</td><td>0.600</td></tr>
+                <tr><td>Simple CNN</td><td>0.934</td><td>0.935</td><td>0.934</td><td>0.934</td></tr>
+                <tr><td>ResNet-like CNN</td><td>0.943</td><td>0.943</td><td>0.943</td><td>0.943</td></tr>
+                <tr><td>Improved CNN</td><td>0.967</td><td>0.968</td><td>0.967</td><td>0.967</td></tr>
+                <tr><td>TunedImprovedCNN</td><td>0.970</td><td>0.970</td><td>0.970</td><td>0.970</td></tr>
+            </table>
+            <h3>Confusion Matrices</h3>
+            <img src="assets/Tuned Improved CNN - Train Confusion Matrix.png" alt="Train Confusion Matrix">
+            <img src="assets/Tuned Improved CNN - Test Confusion Matrix.png" alt="Test Confusion Matrix">
+        </section>
+
+        <section>
+            <h2>Error Analysis</h2>
+            <img src="assets/Misclassified examples for TunedImprovedCNN.png" alt="Misclassified examples">
+        </section>
+
+        <section>
+            <h2>Research Extension: Few-Shot and Metric Learning</h2>
+            <p>We investigate few-shot learning and metric learning using Siamese networks. The contrastive loss is defined as:</p>
+            <p>$$\mathcal{L}_{contr} = y D(x_a, x_b)^2 + (1-y) \max(0, m - D(x_a, x_b))^2$$</p>
+            <p>One-shot evaluation accuracy: 77.67%.</p>
+        </section>
+
+        <section>
+            <h2>Conclusion</h2>
+            <p>This project compared several models for KMNIST character classification, starting from a simple logistic regression baseline and ending with a tuned CNN. Flattening the 28×28 images and training logistic regression gave about 60% test accuracy, which is limited by the linear decision boundary and the overlapping class structure in the data. Even a small two-layer CNN improved performance to over 93% by exploiting local spatial patterns. Adding residual blocks, batch normalization, and dropout in the Improved CNN pushed accuracy to about 96.7%.</p>
+            <p>A small grid search over learning rate, dropout rate, and batch size further improved the model to about 97.0% test accuracy. Confusion matrices and misclassified examples showed that the tuned model makes relatively few systematic errors and mostly fails on characters that are visually ambiguous. Overall, the experiments confirm that representation learning with CNNs is crucial for KMNIST, and that a simple validation-based tuning step can still give a measurable gain over reasonable default settings.</p>
+            <p>Possible future work includes experimenting with data augmentation (random shifts and small rotations), trying deeper or wider residual networks, and exploring regularization strategies such as label smoothing or mixup to close the remaining gap to state of the art results.</p>
+            <p>All code, trained models, and notebooks are available at our <a href="https://github.com/adimantamu/ECEN_Data_Mining_Project_Group10" target="_blank"><strong>GitHub Repository</strong></a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 ECEN Group 10 | Hosted on GitHub Pages</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
