@@ -30,9 +30,8 @@ The goal is to understand the performance gap between linear classifiers and dee
 - Confusion matrices (Train & Test)
 - Misclassified examples
 
-## 📜 Report & Code Links
+## 📜 Code Links
 - [GitHub Repository](https://github.com/adimantamu/ECEN_Data_Mining_Project_Group10)
-- [Overleaf Report](https://www.overleaf.com/project/69016ec3e24401e7e034fea3)
 
 ## 🚀 How to Run Locally
 1. Clone the repository:
